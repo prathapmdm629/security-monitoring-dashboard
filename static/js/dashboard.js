@@ -1,0 +1,7 @@
+const colors = ['#f36f78', '#ffad66', '#e6c76d', '#78aefc', '#57d9d1', '#6fd49b'];
+const labels = (items) => items.map((item) => item.label);
+const values = (items) => items.map((item) => item.value);
+const common = { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#a7b7c0', font: { family: 'Manrope' } } } } };
+new Chart(document.getElementById('severityChart'), { type: 'doughnut', data: { labels: labels(window.chartData.severity), datasets: [{ data: values(window.chartData.severity), backgroundColor: colors, borderWidth: 0 }] }, options: { ...common, cutout: '68%' } });
+new Chart(document.getElementById('sourceChart'), { type: 'bar', data: { labels: labels(window.chartData.sources), datasets: [{ data: values(window.chartData.sources), backgroundColor: '#57d9d1', borderRadius: 2 }] }, options: { ...common, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#8294a1' }, grid: { display: false } }, y: { ticks: { color: '#8294a1', precision: 0 }, grid: { color: '#263542' } } } } });
+new Chart(document.getElementById('statusChart'), { type: 'bar', data: { labels: labels(window.chartData.statuses), datasets: [{ data: values(window.chartData.statuses), backgroundColor: ['#57d9d1','#ffad66','#6fd49b','#8294a1'], borderRadius: 2 }] }, options: { ...common, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#8294a1', precision: 0 }, grid: { color: '#263542' } }, y: { ticks: { color: '#8294a1' }, grid: { display: false } } } } });
